@@ -1,0 +1,27 @@
+# API keys and environment files
+.env
+.env.*
+!.env.example
+
+# Python files
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Private keys
+*.pem
+*.key
+
+# Development files
+.vscode/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Dependencies and build files
+node_modules/
+dist/
+build/

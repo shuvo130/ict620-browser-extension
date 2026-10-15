@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Neurodivergent Learning Assistant",
+    "version": "0.1.0",
+    "description": "An AI-supported browser extension designed to assist neurodivergent university students with online learning content.",
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Neurodivergent Learning Assistant"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "content.css"
+            ]
+        }
+    ]
+}

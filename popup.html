@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        width: 350px;
+        padding: 15px;
+        font-family: Arial, sans-serif;
+    }
+
+    #selected-text,
+    #ai-result {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neurodivergent Learning Assistant</title>
+</head>
+
+<body>
+
+    <h2>Neurodivergent Learning Assistant</h2>
+
+    <p><strong>Selected Text:</strong></p>
+
+    <div id="selected-text">
+        Select some text from the webpage.
+    </div>
+
+    <br>
+
+    <button id="breakdown-btn">
+        🧩 Break Down Task
+    </button>
+
+    <button id="summarise-btn">
+        📝 Summarise Text
+    </button>
+    <button id="guided-notes-btn">
+        📚 Generate Guided Notes
+    </button>
+
+    <hr>
+
+    <div id="ai-result-section">
+        <p><strong>AI Result:</strong></p>
+
+        <div id="ai-result">
+            Your AI-generated result will appear here.
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+
+</body>
+
+</html>
