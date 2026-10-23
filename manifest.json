@@ -8,7 +8,7 @@
         "storage"
     ],
     "host_permissions": [
-        "http://127.0.0.1:5000/*"
+        "https://ict620-browser-extension.onrender.com/*"
     ],
     "action": {
         "default_popup": "workspace.html",

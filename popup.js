@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const demoToken = await getDemoToken();
 
             const response = await fetch(
-                "http://127.0.0.1:5000/summarise",
+                "https://ict620-browser-extension.onrender.com/summarise",
                 {
                     method: "POST",
 
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const demoToken = await getDemoToken();
             const response = await fetch(
-                "http://127.0.0.1:5000/breakdown",
+                "https://ict620-browser-extension.onrender.com/breakdown",
                 {
                     method: "POST",
                     headers: {
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const demoToken = await getDemoToken();
             const response = await fetch(
-                "http://127.0.0.1:5000/guided-notes",
+                "https://ict620-browser-extension.onrender.com/guided-notes",
                 {
                     method: "POST",
                     headers: {
