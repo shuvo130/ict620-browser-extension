@@ -415,3 +415,8 @@ body {
     outline: 3px solid #2563eb;
     outline-offset: 2px;
 }
+
+/* Hide duplicate AI Result in the right panel */
+#ai-result-section {
+    display: none !important;
+}
