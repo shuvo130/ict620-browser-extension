@@ -8,8 +8,31 @@
     <link rel="stylesheet" href="popup.css">
 </head>
 
+
 <body>
-    <div class="app-container">
+
+    <!-- First-time Demo Access Setup -->
+    <section id="demo-setup" hidden>
+        <h2>Welcome to Neurodivergent Learning Assistant</h2>
+
+        <p>
+            Enter the demo access token provided by your
+            project team to activate the AI features.
+        </p>
+
+        <label for="demo-token-input">Demo Access Token:</label>
+
+        <input type="password" id="demo-token-input" placeholder="Enter your demo token" autocomplete="off">
+
+        <button id="save-demo-token-btn" type="button">
+            Save & Continue
+        </button>
+
+        <p id="demo-token-message" role="status"></p>
+    </section>
+
+    <div class="app-container" id="main-app">
+
 
         <!-- Profile Header -->
         <header class="profile-header">

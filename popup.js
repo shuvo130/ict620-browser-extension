@@ -5,6 +5,75 @@ async function getDemoToken() {
 }
 document.addEventListener("DOMContentLoaded", () => {
 
+    // First-time demo access setup
+    const demoSetup = document.getElementById("demo-setup");
+    const mainApp = document.getElementById("main-app");
+    const demoTokenInput = document.getElementById("demo-token-input");
+    const saveDemoTokenButton = document.getElementById("save-demo-token-btn");
+    const demoTokenMessage = document.getElementById("demo-token-message");
+
+    async function showCorrectScreen() {
+        const { demoAccessToken } =
+            await chrome.storage.local.get("demoAccessToken");
+
+        if (demoAccessToken) {
+            demoSetup.hidden = true;
+            mainApp.hidden = false;
+        } else {
+            demoSetup.hidden = false;
+            mainApp.hidden = true;
+        }
+    }
+
+    saveDemoTokenButton.addEventListener("click", async () => {
+        const token = demoTokenInput.value.trim();
+
+        if (!token) {
+            demoTokenMessage.textContent = "Please enter your demo token.";
+            return;
+        }
+
+        saveDemoTokenButton.disabled = true;
+        demoTokenMessage.textContent = "Checking demo access...";
+
+        try {
+            const response = await fetch(
+                "https://ict620-browser-extension.onrender.com/summarise",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Demo-Token": token
+                    },
+                    body: JSON.stringify({
+                        text: "Demo access validation."
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(
+                    response.status === 401
+                        ? "Incorrect demo token. Please try again."
+                        : "Unable to validate access. Please try again later."
+                );
+            }
+
+            await chrome.storage.local.set({ demoAccessToken: token });
+
+            demoTokenInput.value = "";
+            demoTokenMessage.textContent = "";
+            await showCorrectScreen();
+
+        } catch (error) {
+            demoTokenMessage.textContent = error.message;
+        } finally {
+            saveDemoTokenButton.disabled = false;
+        }
+    });
+
+    showCorrectScreen();
+
     const selectedTextBox = document.getElementById("selected-text");
     const summariseButton = document.getElementById("summarise-btn");
     const breakdownButton = document.getElementById("breakdown-btn");

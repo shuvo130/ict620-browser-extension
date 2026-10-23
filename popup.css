@@ -420,3 +420,57 @@ body {
 #ai-result-section {
     display: none !important;
 }
+
+/* Keep hidden screens hidden */
+[hidden] {
+    display: none !important;
+}
+
+/* First-time demo token setup */
+#demo-setup {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+}
+
+#demo-setup h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+#demo-setup p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#demo-token-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 16px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#save-demo-token-btn {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#save-demo-token-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+#demo-token-message {
+    color: #b91c1c;
+    margin-top: 12px;
+}
