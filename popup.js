@@ -1,4 +1,8 @@
 // Get the text selected by the user from Chrome storage
+async function getDemoToken() {
+    const result = await chrome.storage.local.get("demoAccessToken");
+    return result.demoAccessToken || "";
+}
 document.addEventListener("DOMContentLoaded", () => {
 
     const selectedTextBox = document.getElementById("selected-text");
@@ -6,6 +10,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const breakdownButton = document.getElementById("breakdown-btn");
     const guidedNotesButton = document.getElementById("guided-notes-btn");
     const aiResult = document.getElementById("ai-result");
+    const aiResultSection = document.getElementById("ai-result-section");
+    const clearTextButton = document.getElementById("clear-text-btn");
+
+    clearTextButton.addEventListener("click", async () => {
+        try {
+            // Remove selected text from Chrome storage
+            await chrome.storage.local.remove("selectedText");
+
+            // Clear the selected text displayed in the interface
+            selectedTextBox.textContent =
+                "Select some text from the webpage.";
+            displayAIResult(
+                "Your AI-generated result will appear here."
+            );
+            if (window.parent !== window) {
+                window.parent.postMessage(
+                    { type: "CLEAR_RESULT" },
+                    window.location.origin
+                );
+            }
+
+        } catch (error) {
+            console.error("Unable to clear selected text:", error);
+        }
+    });
+
+
+    function displayAIResult(text) {
+        aiResult.textContent = text;
+        // Show the AI Result panel in the extension popup
+        aiResultSection.classList.add("visible");
+        // Send the result to the parent workspace when available.
+        if (window.parent !== window) {
+            window.parent.postMessage({
+                type: "AI_RESULT",
+                text: text
+            }, window.location.origin);
+        }
+    }
+
 
     // Load selected webpage text
     chrome.storage.local.get(["selectedText"], (result) => {
@@ -28,23 +72,28 @@ document.addEventListener("DOMContentLoaded", () => {
             !selectedText ||
             selectedText === "Select some text from the webpage."
         ) {
-            aiResult.textContent =
-                "Please select some text from the webpage first.";
+            displayAIResult(
+                "Please select some text from the webpage first."
+            );
             return;
         }
 
-        aiResult.textContent = "Processing selected text...";
+        displayAIResult("Generating your text summary...\n\nPlease wait.");
 
         try {
+            const demoToken = await getDemoToken();
 
             const response = await fetch(
                 "http://127.0.0.1:5000/summarise",
                 {
                     method: "POST",
 
+
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "X-Demo-Token": demoToken
                     },
+
 
                     body: JSON.stringify({
                         text: selectedText
@@ -60,14 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
             }
 
-            aiResult.textContent = data.summary;
+
+            displayAIResult("Text Summary:\n\n" + data.summary);
+
 
         } catch (error) {
 
             console.error(error);
 
-            aiResult.textContent =
-                "Unable to connect to the AI backend.";
+            displayAIResult(
+                "Unable to generate the summary.\n\n" + error.message
+            );
 
         }
 
@@ -81,20 +133,25 @@ document.addEventListener("DOMContentLoaded", () => {
             !selectedText ||
             selectedText === "Select some text from the webpage."
         ) {
-            aiResult.textContent =
-                "Please select a task from the webpage first.";
+            displayAIResult(
+                "Please select a task from the webpage first."
+            );
             return;
         }
 
-        aiResult.textContent = "Breaking down your task...";
+
+        displayAIResult("Breaking down your task...\n\nPlease wait.");
+
 
         try {
+            const demoToken = await getDemoToken();
             const response = await fetch(
                 "http://127.0.0.1:5000/breakdown",
                 {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "X-Demo-Token": demoToken
                     },
                     body: JSON.stringify({
                         text: selectedText
@@ -108,12 +165,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error(data.error || "Something went wrong.");
             }
 
-            aiResult.textContent = data.breakdown;
+
+
+            displayAIResult("Task Breakdown:\n\n" + data.breakdown);
+
+
 
         } catch (error) {
             console.error(error);
-            aiResult.textContent =
-                "Unable to process the task.";
+            displayAIResult(
+                "Unable to process the task.\n\n" + error.message
+            );
         }
     });
     // Generate Guided Notes button
@@ -125,20 +187,23 @@ document.addEventListener("DOMContentLoaded", () => {
             !selectedText ||
             selectedText === "Select some text from the webpage."
         ) {
-            aiResult.textContent =
-                "Please select some learning content first.";
+            displayAIResult(
+                "Please select some learning content first."
+            );
             return;
         }
 
-        aiResult.textContent = "Generating guided notes...";
+        displayAIResult("Generating your guided notes...\n\nPlease wait.");
 
         try {
+            const demoToken = await getDemoToken();
             const response = await fetch(
                 "http://127.0.0.1:5000/guided-notes",
                 {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "X-Demo-Token": demoToken
                     },
                     body: JSON.stringify({
                         text: selectedText
@@ -152,12 +217,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error(data.error || "Something went wrong.");
             }
 
-            aiResult.textContent = data.notes;
+
+
+            displayAIResult("Guided Notes:\n\n" + data.notes);
+
+
 
         } catch (error) {
             console.error(error);
-            aiResult.textContent =
-                "Unable to generate guided notes.";
+            displayAIResult(
+                "Unable to generate guided notes.\n\n" + error.message
+            );
         }
     });
 });

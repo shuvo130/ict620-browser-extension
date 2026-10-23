@@ -1,0 +1,417 @@
+/* Neurodivergent Learning Assistant */
+/* Figma-inspired interface */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    width: 390px;
+    background: #f5f7fb;
+    color: #253047;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.app-container {
+    padding: 18px;
+}
+
+/* Profile Header */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e4e8f0;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e1eaff;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.profile-name {
+    font-weight: 600;
+}
+
+.account-status {
+    padding: 6px 10px;
+    border-radius: 15px;
+    background: #e8eefc;
+    color: #315ec7;
+    font-size: 12px;
+}
+
+/* AI Service Dropdown */
+
+.service-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.service-section label {
+    font-weight: 600;
+}
+
+#ai-service {
+    flex: 1;
+    min-width: 0;
+    padding: 11px;
+    border: 1px solid #d6deeb;
+    border-radius: 9px;
+    background: white;
+    color: #253047;
+    font-size: 13px;
+}
+
+/* Selected Text Section */
+
+.selected-section {
+    margin-top: 22px;
+}
+
+.selected-section h2 {
+    margin: 0 0 20px;
+    color: #253b73;
+    font-size: 19px;
+    line-height: 1.4;
+}
+
+.selected-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.selected-text-box {
+    min-height: 155px;
+    max-height: 220px;
+    padding: 14px;
+    overflow-y: auto;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    background: #e9edf3;
+    border: 1px solid #dce2eb;
+    border-radius: 10px;
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* AI Feature Buttons */
+
+.feature-buttons {
+    margin-top: 20px;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+}
+
+.secondary-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.secondary-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 8px;
+    border: 1px solid #c9d8f7;
+    border-radius: 10px;
+    background: #e9f0ff;
+    color: #2454b5;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.secondary-btn:hover {
+    background: #dce8ff;
+}
+
+/* AI Result Panel */
+
+.result-panel {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #dce2eb;
+    border-radius: 12px;
+    background: white;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.result-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #253b73;
+}
+
+#close-result-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    background: #eef2f7;
+    color: #475569;
+    font-size: 22px;
+}
+
+.result-content {
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    line-height: 1.7;
+    color: #334155;
+}
+
+/* Accessibility */
+
+button:focus-visible,
+select:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+
+/* Compact layout to match Figma */
+
+body {
+    width: 390px;
+    background: #ffffff;
+}
+
+.app-container {
+    padding: 14px 16px;
+}
+
+.profile-header {
+    padding-bottom: 10px;
+    border-bottom: none;
+}
+
+.service-section {
+    margin-top: 12px;
+    padding: 10px;
+    background: #f3f4f6;
+    border-radius: 7px;
+}
+
+#ai-service {
+    background: transparent;
+    border: none;
+    padding: 8px;
+}
+
+.selected-section {
+    margin-top: 18px;
+}
+
+.selected-section h2 {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #111827;
+}
+
+.selected-section label {
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.selected-text-box {
+    height: 190px;
+    min-height: 190px;
+    max-height: 190px;
+    background: #f1f2f4;
+    border: none;
+    border-radius: 6px;
+}
+
+.feature-buttons {
+    margin-top: 14px;
+}
+
+.primary-btn {
+    padding: 16px;
+    border-radius: 6px;
+    background: #3d65ff;
+}
+
+.secondary-buttons {
+    margin-top: 12px;
+}
+
+.secondary-btn {
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+}
+
+/* Hide result panel until we build
+   the separate Figma-style result view */
+
+/* AI Result panel is hidden until an AI button is clicked */
+
+.result-panel {
+    display: none;
+}
+
+.result-panel.visible {
+    display: block;
+}
+
+
+/* AI Service information */
+
+.service-section {
+    flex-wrap: wrap;
+}
+
+.service-note {
+    width: 100%;
+    margin: 2px 0 0;
+    padding-left: 0;
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* Accessible button interactions */
+
+.primary-btn,
+.secondary-btn {
+    transition: background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.primary-btn:focus-visible,
+.secondary-btn:focus-visible {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
+}
+
+.primary-btn:active {
+    background: #1e40af;
+}
+
+.secondary-btn:active {
+    background: #dbeafe;
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .primary-btn,
+    .secondary-btn {
+        transition: none;
+    }
+}
+
+
+/* Privacy Notice */
+
+.privacy-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 12px;
+    background: #f1f5f9;
+    border: 1px solid #dbe3ed;
+    border-radius: 8px;
+}
+
+.privacy-icon {
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+.privacy-notice p {
+    margin: 0;
+    color: #475569;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.privacy-notice strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #1e293b;
+    font-size: 12px;
+}
+
+.privacy-notice p span {
+    display: block;
+    .result-panel
+}
+
+
+/* Clear Selected Text button */
+
+.text-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+#clear-text-btn {
+    padding: 7px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#clear-text-btn:hover {
+    background: #f1f5f9;
+}
+
+#clear-text-btn:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}

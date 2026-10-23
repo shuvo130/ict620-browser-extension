@@ -7,8 +7,11 @@
         "activeTab",
         "storage"
     ],
+    "host_permissions": [
+        "http://127.0.0.1:5000/*"
+    ],
     "action": {
-        "default_popup": "popup.html",
+        "default_popup": "workspace.html",
         "default_title": "Neurodivergent Learning Assistant"
     },
     "content_scripts": [

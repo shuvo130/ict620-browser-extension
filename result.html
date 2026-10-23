@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Result - Neurodivergent Learning Assistant</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 14px 16px;
+            width: 390px;
+            min-height: 580px;
+            background: #ffffff;
+            font-family: Arial, sans-serif;
+            color: #111827;
+            font-size: 16px;
+        }
+
+        /* Result panel header */
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .result-header h2 {
+            margin: 0;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .close-btn {
+            border: none;
+            background: transparent;
+            color: #9ca3af;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #374151;
+        }
+
+
+        /* Accessible AI Result content */
+
+        .result-box {
+            height: 520px;
+            padding: 18px;
+            overflow-y: auto;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
+
+            background: #f1f2f4;
+            border-radius: 8px;
+
+            color: #1f2937;
+            font-size: 16px;
+            line-height: 1.8;
+            letter-spacing: 0.2px;
+        }
+
+        /* Accessible close button */
+
+        .close-btn:focus-visible {
+            outline: 3px solid #2563eb;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+
+        /* Keyboard accessibility for AI Result close button */
+
+        .close-btn:focus-visible {
+            outline: 3px solid #2563eb;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* Copy Result button styling */
+
+        .result-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 12px;
+        }
+
+        #copy-result-btn {
+            padding: 10px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: #ffffff;
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        #copy-result-btn:hover {
+            background: #eff6ff;
+        }
+
+        #copy-result-btn:focus-visible {
+            outline: 3px solid #2563eb;
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="result-header">
+        <h2>AI Result :</h2>
+        <button id="close-result-btn" class="close-btn" type="button" aria-label="Close AI result">
+            &times;
+        </button>
+    </div>
+
+    <div id="ai-result" class="result-box" role="status" aria-live="polite">
+        Your AI-generated result will appear here.
+    </div>
+
+    <div class="result-actions">
+        <button id="copy-result-btn" type="button">
+            📋 Copy Result
+        </button>
+    </div>
+
+    <script src="result.js"></script>
+
+</body>
+
+</html>

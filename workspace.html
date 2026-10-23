@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Neurodivergent Learning Assistant</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f3f4f6;
+            font-family: Arial, sans-serif;
+        }
+
+        .workspace {
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            width: max-content;
+            max-width: 800px;
+        }
+
+        .panel {
+            width: 390px;
+            height: 580px;
+            background: white;
+            overflow: hidden;
+        }
+
+        .panel iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Hide the result panel until requested */
+        #result-panel[hidden] {
+            display: none;
+        }
+
+        /* Separate the result from the main interface */
+        #result-panel {
+            border-right: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="workspace">
+
+        <!-- Left: AI Result -->
+        <section class="panel" id="result-panel" aria-label="AI Result" hidden>
+            <iframe src="result.html" title="AI Result"></iframe>
+        </section>
+
+        <!-- Right: Main Extension -->
+        <section class="panel" aria-label="Learning Assistant">
+            <iframe src="popup.html" title="Neurodivergent Learning Assistant"></iframe>
+        </section>
+
+    </main>
+
+    <script src="workspace.js"></script>
+
+</body>
+
+</html>
