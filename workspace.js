@@ -81,9 +81,35 @@ document.addEventListener("DOMContentLoaded", () => {
             const resultBox =
                 resultDocument.getElementById("ai-result");
 
+
             if (resultBox) {
-                resultBox.textContent = event.data.text;
+                const text = String(event.data.text || "");
+
+                // Display AI-generated text safely.
+                resultBox.replaceChildren();
+
+                // Convert Markdown bold markers into real bold text.
+                const lines = text.split("\n");
+
+                lines.forEach((line, index) => {
+                    if (index > 0) {
+                        resultBox.appendChild(document.createTextNode("\n"));
+                    }
+
+                    const parts = line.split(/(\*\*[^*\n]+\*\*)/g);
+
+                    parts.forEach((part) => {
+                        if (part.startsWith("**") && part.endsWith("**")) {
+                            const strong = document.createElement("strong");
+                            strong.textContent = part.slice(2, -2);
+                            resultBox.appendChild(strong);
+                        } else {
+                            resultBox.appendChild(document.createTextNode(part));
+                        }
+                    });
+                });
             }
+
 
             const copyButton =
                 resultDocument.getElementById("copy-result-btn");
