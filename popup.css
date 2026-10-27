@@ -384,7 +384,6 @@ body {
 
 .privacy-notice p span {
     display: block;
-    .result-panel
 }
 
 
@@ -473,4 +472,10 @@ body {
 #demo-token-message {
     color: #b91c1c;
     margin-top: 12px;
+}
+/* AI disclaimer — visually consistent with Privacy Notice */
+.ai-disclaimer {
+    margin-top: 10px;
+    background: #fff8eb;
+    border-color: #f0dfbf;
 }
